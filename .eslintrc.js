@@ -10,6 +10,7 @@ module.exports = {
   },
   parserOptions: {
     ecmaFeatures: {
+      experimentalObjectRestSpread: true,
       jsx: true
     },
     ecmaVersion: 2018,
@@ -22,10 +23,11 @@ module.exports = {
       {
         printWidth: 80,
         trailingComma: "es5",
-        semi: false,
+        semi: true,
         jsxSingleQuote: true,
         singleQuote: true,
-        useTabs: false
+        tabWidth: 2,
+        arrowParens: "avoid"
       }
     ]
   }
