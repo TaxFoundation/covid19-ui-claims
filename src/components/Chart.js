@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleLinear, scaleBand } from '@vx/scale';
 import { Bar, Line } from '@vx/shape';
@@ -7,7 +8,7 @@ import { Bar, Line } from '@vx/shape';
 const Chart = ({ data }) => {
   const height = 600;
   const width = 800;
-  const margin = { top: 20, right: 20, bottom: 20, left: 20 };
+  const margin = { top: 20, right: 20, bottom: 20, left: 70 };
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 
@@ -25,7 +26,21 @@ const Chart = ({ data }) => {
     ],
   });
 
-  return <div>{JSON.stringify(data)}</div>;
+  return (
+    <svg viewBox={`0 0 ${width} ${height}`}>
+      <Group left={margin.left}>
+        <AxisLeft
+          top={margin.top}
+          left={0}
+          scale={yScale}
+          hideZero
+          numTicks={10}
+          label='Unemployment Insurance Claims'
+        />
+        <AxisBottom scale={xScale} top={yMax} label={'Week of Claims'} />
+      </Group>
+    </svg>
+  );
 };
 
 Chart.propTypes = {

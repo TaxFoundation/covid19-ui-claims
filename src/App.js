@@ -19,18 +19,22 @@ const App = () => {
 
   return (
     <div>
-      <Selection
-        options={data.map(d => {
-          return {
-            id: +d.id,
-            name: d.name,
-            abbr: d.abbr,
-          };
-        })}
-        selected={selectedState}
-        setSelected={setSelectedState}
-      ></Selection>
-      <Chart data={data.find(d => +d.id === selectedState)}></Chart>
+      {data.length && (
+        <>
+          <Selection
+            options={data.map(d => {
+              return {
+                id: +d.id,
+                name: d.name,
+                abbr: d.abbr,
+              };
+            })}
+            selected={selectedState}
+            setSelected={setSelectedState}
+          ></Selection>
+          <Chart data={data.find(d => +d.id === selectedState)}></Chart>
+        </>
+      )}
     </div>
   );
 };
