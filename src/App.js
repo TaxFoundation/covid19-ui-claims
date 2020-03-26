@@ -13,7 +13,7 @@ const StyledApp = styled.div`
 
 const App = () => {
   const [data, setData] = useState([]);
-  const [selectedState, setSelectedState] = useState(36);
+  const [selectedState, setSelectedState] = useState(0);
 
   useEffect(() => {
     const fetchData = async () => {
