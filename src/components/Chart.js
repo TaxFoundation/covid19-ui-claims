@@ -32,18 +32,6 @@ const Chart = ({ data }) => {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`}>
-      <Group left={margin.left}>
-        <AxisLeft
-          top={margin.top}
-          left={0}
-          labelOffset={margin.left - 20}
-          scale={yScale}
-          hideZero
-          numTicks={10}
-          label='Unemployment Insurance Claims'
-        />
-        <AxisBottom scale={xScale} top={margin.top + yMax} label={'Week of Claims'} />
-      </Group>
       <Group>
         {barData.map((bar, i) => {
           const barWidth = xScale.bandwidth();
@@ -59,6 +47,18 @@ const Chart = ({ data }) => {
             fill="#0094ff"
           />)
         })}
+      </Group>
+      <Group left={margin.left}>
+        <AxisLeft
+          top={margin.top}
+          left={0}
+          labelOffset={margin.left - 20}
+          scale={yScale}
+          hideZero
+          numTicks={10}
+          label='Unemployment Insurance Claims'
+        />
+        <AxisBottom scale={xScale} top={margin.top + yMax} label={'Week of Claims'} />
       </Group>
     </svg>
   );
