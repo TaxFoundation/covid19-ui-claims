@@ -1,9 +1,15 @@
 import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 import { csvParse } from 'd3-dsv';
 
 import Selection from './components/Selection';
 import Chart from './components/Chart';
+
+const StyledApp = styled.div`
+  margin: 0 auto;
+  max-width: 1200px;
+`;
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -18,7 +24,7 @@ const App = () => {
   }, []);
 
   return (
-    <div>
+    <StyledApp>
       {data.length && (
         <>
           <Selection
@@ -35,7 +41,7 @@ const App = () => {
           <Chart data={data.find(d => +d.id === selectedState)}></Chart>
         </>
       )}
-    </div>
+    </StyledApp>
   );
 };
 
