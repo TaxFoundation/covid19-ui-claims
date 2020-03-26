@@ -12,7 +12,18 @@ const Chart = ({ data }) => {
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const barData = [data['2008median'], data['2008max'], data['week20200326']];
-  const xLabels = ['2008 Median Week', '2008 Maximum Week', 'Week Ending 3/26/2020']
+  const xLabels = [
+    '2008, Week With Median Number of Claims',
+    '2008, Week With Maximum Number of Claims',
+    'Week Ending March 21, 2020 Total Claims',
+  ];
+  const colors = ['#623D6E', '#3394C3', '#78E3CF'];
+  const labelProps = {
+    textAnchor: 'middle',
+    fontFamily: '"lato", sans-serif',
+    fontSize: 14,
+    fill: 'black',
+  };
 
   const xScale = scaleBand({
     domain: xLabels,
@@ -22,10 +33,7 @@ const Chart = ({ data }) => {
 
   const yScale = scaleLinear({
     rangeRound: [yMax, 0],
-    domain: [
-      0,
-      Math.max(...barData),
-    ],
+    domain: [0, Math.max(...barData)],
   });
 
   console.log(data);
@@ -38,14 +46,16 @@ const Chart = ({ data }) => {
           const barHeight = yMax - yScale(bar);
           const barX = margin.left + xScale(xLabels[i]);
           const barY = margin.top + yMax - barHeight;
-          return (<Bar
-            key={`bar-${bar}`}
-            x={barX}
-            y={barY}
-            width={barWidth}
-            height={barHeight}
-            fill="#0094ff"
-          />)
+          return (
+            <Bar
+              key={`bar-${bar}`}
+              x={barX}
+              y={barY}
+              width={barWidth}
+              height={barHeight}
+              fill={colors[i]}
+            />
+          );
         })}
       </Group>
       <Group left={margin.left}>
@@ -57,8 +67,14 @@ const Chart = ({ data }) => {
           hideZero
           numTicks={10}
           label='Unemployment Insurance Claims'
+          labelProps={labelProps}
         />
-        <AxisBottom scale={xScale} top={margin.top + yMax} label={'Week of Claims'} />
+        <AxisBottom
+          scale={xScale}
+          top={margin.top + yMax}
+          label='Week of Claims'
+          labelProps={labelProps}
+        />
       </Group>
     </svg>
   );
