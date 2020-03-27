@@ -9,7 +9,7 @@ import { Point } from '@vx/point';
 const Chart = ({ data }) => {
   const height = 600;
   const width = 800;
-  const margin = { top: 20, right: 20, bottom: 70, left: 70 };
+  const margin = { top: 20, right: 20, bottom: 100, left: 90 };
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const barData = [
@@ -18,15 +18,15 @@ const Chart = ({ data }) => {
     data['week20200326'],
   ];
   const xLabels = [
-    `Great Recession, ${data.name}'s Avgerage Claims per Week`,
-    `Great Recession, ${data.name}'s Maximum Claims per Week`,
-    `${data.name}'s Total Claims for the Week Ending March 21, 2020`,
+    `Great Recession, ${data.name}'s Avgerage, Claims per Week`,
+    `Great Recession, ${data.name}'s Maximum, Claims per Week`,
+    `${data.name}'s Total Claims, for the Week Ending, March 21st 2020`,
   ];
   const colors = ['#623D6E', '#3394C3', '#78E3CF'];
   const labelProps = {
     textAnchor: 'middle',
     fontFamily: '"lato", sans-serif',
-    fontSize: 14,
+    fontSize: 16,
     fill: 'black',
   };
 
@@ -92,7 +92,7 @@ const Chart = ({ data }) => {
           labelProps={labelProps}
         >
           {props => {
-            const tickLabelSize = 14;
+            const tickLabelSize = 12;
             const tickColor = '#333333';
             const axisCenter =
               (props.axisToPoint.x - props.axisFromPoint.x) / 2;
@@ -113,12 +113,22 @@ const Chart = ({ data }) => {
                         strokeWidth='1px'
                       />
                       <text
-                        transform={`translate(${tickX}, ${tickY})`}
+                        x={tickX}
+                        y={tickY}
                         fontSize={tickLabelSize}
                         textAnchor='middle'
                         fill={tickColor}
+                        fontFamily='"lato", sans-serif'
                       >
-                        {tick.formattedValue}
+                        {tick.formattedValue.split(', ').map((line, i) => (
+                          <tspan
+                            key={`line-${i}-${line}`}
+                            x={tickX}
+                            dy={i === 0 ? 0 : tickLabelSize * 1.2}
+                          >
+                            {line}
+                          </tspan>
+                        ))}
                       </text>
                     </Group>
                   );
@@ -134,7 +144,7 @@ const Chart = ({ data }) => {
                   stroke={tickColor}
                   strokeWidth='1'
                 />
-                <text {...labelProps} x={axisCenter} y={60}>
+                <text {...labelProps} x={axisCenter} y={90}>
                   {props.label}
                 </text>
               </g>
