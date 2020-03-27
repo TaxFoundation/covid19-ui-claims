@@ -25,7 +25,7 @@ const App = () => {
 
   return (
     <StyledApp>
-      {data.length && (
+      {data.length ? (
         <>
           <Selection
             options={data.map(d => {
@@ -40,7 +40,7 @@ const App = () => {
           ></Selection>
           <Chart data={data.find(d => +d.id === selectedState)}></Chart>
         </>
-      )}
+      ) : null}
     </StyledApp>
   );
 };
