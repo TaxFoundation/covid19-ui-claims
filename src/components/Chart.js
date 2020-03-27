@@ -17,9 +17,9 @@ const Chart = ({ data }) => {
     data['week20200326'],
   ];
   const xLabels = [
-    'Great Recession Avgerage Claims per Week',
-    'Great Recession Maximum Claims per Week',
-    'Week Ending March 21, 2020 Total Claims',
+    `Great Recession, ${data.name}'s Avgerage Claims per Week`,
+    `Great Recession, ${data.name}'s Maximum Claims per Week`,
+    `${data.name}'s Total Claims for the Week Ending March 21, 2020`,
   ];
   const colors = ['#623D6E', '#3394C3', '#78E3CF'];
   const labelProps = {
