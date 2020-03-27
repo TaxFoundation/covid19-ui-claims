@@ -3,12 +3,13 @@ import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleLinear, scaleBand } from '@vx/scale';
-import { Bar } from '@vx/shape';
+import { Bar, Line } from '@vx/shape';
+import { Point } from '@vx/point';
 
 const Chart = ({ data }) => {
   const height = 600;
   const width = 800;
-  const margin = { top: 20, right: 20, bottom: 50, left: 70 };
+  const margin = { top: 20, right: 20, bottom: 70, left: 70 };
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const barData = [
@@ -89,7 +90,57 @@ const Chart = ({ data }) => {
           top={margin.top + yMax}
           label='Week of Claims'
           labelProps={labelProps}
-        />
+        >
+          {props => {
+            const tickLabelSize = 14;
+            const tickColor = '#333333';
+            const axisCenter =
+              (props.axisToPoint.x - props.axisFromPoint.x) / 2;
+            return (
+              <g className='my-custom-bottom-axis'>
+                {props.ticks.map((tick, i) => {
+                  const tickX = tick.to.x;
+                  const tickY = tick.to.y + tickLabelSize + props.tickLength;
+                  return (
+                    <Group
+                      key={`vx-tick-${tick.value}-${i}`}
+                      className={'vx-axis-tick'}
+                    >
+                      <Line
+                        from={tick.from}
+                        to={tick.to}
+                        stroke={tickColor}
+                        strokeWidth='1px'
+                      />
+                      <text
+                        transform={`translate(${tickX}, ${tickY})`}
+                        fontSize={tickLabelSize}
+                        textAnchor='middle'
+                        fill={tickColor}
+                      >
+                        {tick.formattedValue}
+                      </text>
+                    </Group>
+                  );
+                })}
+                <Line
+                  from={
+                    new Point({
+                      x: props.axisFromPoint.x,
+                      y: 0,
+                    })
+                  }
+                  to={new Point({ x: props.axisToPoint.x, y: 0 })}
+                  stroke={tickColor}
+                  strokeWidth='1'
+                />
+                <text {...labelProps} x={axisCenter} y={60}>
+                  {props.label}
+                </text>
+              </g>
+            );
+          }}
+        </AxisBottom>
       </Group>
     </svg>
   );

@@ -1623,7 +1623,7 @@
     classnames "^2.2.5"
     prop-types "^15.6.2"
 
-"@vx/point@0.0.195":
+"@vx/point@0.0.195", "@vx/point@^0.0.195":
   version "0.0.195"
   resolved "https://registry.yarnpkg.com/@vx/point/-/point-0.0.195.tgz#03d272e6e2d640ee7ba7d7097a93f00a339163ea"
   integrity sha512-2m16lfs4v8BwjWMhGNDC4lBBOwaimRL4BapFTS1UQWYSV12y0KlsJGD17fPdR6X9RzYWJTnOL/yaQuGCBa9AdQ==
