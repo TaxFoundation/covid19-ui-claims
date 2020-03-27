@@ -19,7 +19,7 @@ const Chart = ({ data }) => {
   ];
   const xLabels = [
     `Great Recession, ${data.name}'s Avgerage, Claims per Week`,
-    `Great Recession, ${data.name}'s Maximum, Claims per Week`,
+    `Great Recession, ${data.name}'s Highest, Claims in a Week`,
     `${data.name}'s Total Claims, for the Week Ending, March 21st 2020`,
   ];
   const colors = ['#623D6E', '#3394C3', '#78E3CF'];
@@ -63,14 +63,25 @@ const Chart = ({ data }) => {
           const barX = margin.left + xScale(xLabels[i]);
           const barY = margin.top + yMax - barHeight;
           return (
-            <Bar
-              key={`bar-${bar}`}
-              x={barX}
-              y={barY}
-              width={barWidth}
-              height={barHeight}
-              fill={colors[i]}
-            />
+            <>
+              <text
+                x={barX + barWidth / 2}
+                y={barY - 6}
+                textAnchor='middle'
+                fontFamily='"lato", sanas-serif'
+                fontSize={12}
+              >
+                {Math.round(bar).toLocaleString()}
+              </text>
+              <Bar
+                key={`bar-${bar}`}
+                x={barX}
+                y={barY}
+                width={barWidth}
+                height={barHeight}
+                fill={colors[i]}
+              />
+            </>
           );
         })}
       </Group>
@@ -84,6 +95,14 @@ const Chart = ({ data }) => {
           numTicks={numTicksForY(barData[2])}
           label='Unemployment Insurance Claims'
           labelProps={labelProps}
+          tickLabelProps={() => {
+            return {
+              fontFamily: '"lato", sans-serif',
+              fontSize: 11,
+              textAnchor: 'end',
+              transform: `translate(-5,4)`,
+            };
+          }}
         />
         <AxisBottom
           scale={xScale}
