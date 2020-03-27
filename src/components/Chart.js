@@ -18,7 +18,7 @@ const Chart = ({ data }) => {
     data['week20200326'],
   ];
   const xLabels = [
-    `Great Recession, ${data.name}'s Avgerage, Claims per Week`,
+    `Great Recession, ${data.name}'s Average, Claims per Week`,
     `Great Recession, ${data.name}'s Highest, Claims in a Week`,
     `${data.name}'s Total Claims, for the Week Ending, March 21st 2020`,
   ];
