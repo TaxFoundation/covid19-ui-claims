@@ -31,7 +31,6 @@ const Chart = ({ data }) => {
   };
 
   const numTicksForY = maxValue => {
-    console.log(maxValue);
     if (maxValue >= 1000000) {
       return 10;
     } else if (maxValue < 1000000 && maxValue >= 100000) {
@@ -51,8 +50,6 @@ const Chart = ({ data }) => {
     rangeRound: [yMax, 0],
     domain: [0, Math.max(...barData)],
   });
-
-  console.log(data);
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`}>

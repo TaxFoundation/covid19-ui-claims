@@ -29,7 +29,6 @@ const Select = styled.select`
 `;
 
 const Selection = ({ options, selected, setSelected }) => {
-  console.log(options);
   return (
     <Select value={selected} onChange={e => setSelected(+e.target.value)}>
       {options.map(opt => (
