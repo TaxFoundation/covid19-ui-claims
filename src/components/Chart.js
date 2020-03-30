@@ -5,11 +5,12 @@ import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleLinear, scaleBand } from '@vx/scale';
 import { Bar, Line } from '@vx/shape';
 import { Point } from '@vx/point';
+import { format } from 'd3-format';
 
 const Chart = ({ data }) => {
   const height = 506;
   const width = 674;
-  const margin = { top: 20, right: 20, bottom: 100, left: 90 };
+  const margin = { top: 20, right: 20, bottom: 100, left: 80 };
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
   const barData = [
@@ -68,7 +69,7 @@ const Chart = ({ data }) => {
                 fontFamily='"lato", sanas-serif'
                 fontSize={12}
               >
-                {Math.round(bar).toLocaleString()}
+                {format(',')(Math.round(bar))}
               </text>
               <Bar
                 x={barX}
@@ -91,10 +92,11 @@ const Chart = ({ data }) => {
           numTicks={numTicksForY(barData[2])}
           label='Unemployment Insurance Claims'
           labelProps={labelProps}
+          tickFormat={format('~s')}
           tickLabelProps={() => {
             return {
               fontFamily: '"lato", sans-serif',
-              fontSize: 12,
+              fontSize: 14,
               textAnchor: 'end',
               transform: `translate(-5,4)`,
             };
@@ -107,7 +109,7 @@ const Chart = ({ data }) => {
           labelProps={labelProps}
         >
           {props => {
-            const tickLabelSize = 12;
+            const tickLabelSize = 14;
             const tickColor = '#333333';
             const axisCenter =
               (props.axisToPoint.x - props.axisFromPoint.x) / 2;
@@ -129,7 +131,7 @@ const Chart = ({ data }) => {
                       />
                       <text
                         x={tickX}
-                        y={tickY}
+                        y={tickY - 5}
                         fontSize={tickLabelSize}
                         textAnchor='middle'
                         fill={tickColor}
