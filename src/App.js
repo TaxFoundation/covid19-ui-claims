@@ -8,7 +8,7 @@ import Chart from './components/Chart';
 
 const StyledApp = styled.div`
   margin: 0 auto;
-  max-width: 800px;
+  max-width: 674px;
 `;
 
 const App = () => {

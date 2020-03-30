@@ -7,8 +7,8 @@ import { Bar, Line } from '@vx/shape';
 import { Point } from '@vx/point';
 
 const Chart = ({ data }) => {
-  const height = 600;
-  const width = 800;
+  const height = 506;
+  const width = 674;
   const margin = { top: 20, right: 20, bottom: 100, left: 90 };
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
@@ -26,7 +26,7 @@ const Chart = ({ data }) => {
   const labelProps = {
     textAnchor: 'middle',
     fontFamily: '"lato", sans-serif',
-    fontSize: 16,
+    fontSize: 18,
     fill: 'black',
   };
 
@@ -60,7 +60,7 @@ const Chart = ({ data }) => {
           const barX = margin.left + xScale(xLabels[i]);
           const barY = margin.top + yMax - barHeight;
           return (
-            <>
+            <g key={`bar-${bar}`}>
               <text
                 x={barX + barWidth / 2}
                 y={barY - 6}
@@ -71,14 +71,13 @@ const Chart = ({ data }) => {
                 {Math.round(bar).toLocaleString()}
               </text>
               <Bar
-                key={`bar-${bar}`}
                 x={barX}
                 y={barY}
                 width={barWidth}
                 height={barHeight}
                 fill={colors[i]}
               />
-            </>
+            </g>
           );
         })}
       </Group>
@@ -86,7 +85,7 @@ const Chart = ({ data }) => {
         <AxisLeft
           top={margin.top}
           left={0}
-          labelOffset={margin.left - 20}
+          labelOffset={margin.left - 25}
           scale={yScale}
           hideZero
           numTicks={numTicksForY(barData[2])}
@@ -95,7 +94,7 @@ const Chart = ({ data }) => {
           tickLabelProps={() => {
             return {
               fontFamily: '"lato", sans-serif',
-              fontSize: 11,
+              fontSize: 12,
               textAnchor: 'end',
               transform: `translate(-5,4)`,
             };
