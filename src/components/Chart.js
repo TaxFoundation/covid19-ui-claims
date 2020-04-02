@@ -17,13 +17,15 @@ const Chart = ({ data }) => {
     data['greatrecessionavg'],
     data['greatrecessionmax'],
     data['week20200326'],
+    data['week20200402'],
   ];
   const xLabels = [
-    `Great Recession, ${data.name}'s Average, Claims per Week`,
-    `Great Recession, ${data.name}'s Highest, Claims in a Week`,
-    `${data.name}'s Total Claims, for the Week Ending, March 21st 2020`,
+    `Great Recession, ${data.name}'s, Average Claims, Per Week`,
+    `Great Recession, ${data.name}'s, Highest Claims, In a Week`,
+    `${data.name}'s, Total Claims, For the Week Ending, March 21st 2020`,
+    `${data.name}'s, Total Claims, For the Week Ending, March 28th 2020`,
   ];
-  const colors = ['#623D6E', '#3394C3', '#78E3CF'];
+  const colors = ['#623D6E', '#3394C3', '#78E3CF', '#78E3CF'];
   const labelProps = {
     textAnchor: 'middle',
     fontFamily: '"lato", sans-serif',
@@ -109,7 +111,7 @@ const Chart = ({ data }) => {
           labelProps={labelProps}
         >
           {props => {
-            const tickLabelSize = 14;
+            const tickLabelSize = 12;
             const tickColor = '#333333';
             const axisCenter =
               (props.axisToPoint.x - props.axisFromPoint.x) / 2;
