@@ -22,8 +22,8 @@ const Chart = ({ data }) => {
   const xLabels = [
     `Great Recession, ${data.name}'s, Average Claims, Per Week`,
     `Great Recession, ${data.name}'s, Highest Claims, In a Week`,
-    `${data.name}'s, Total Claims, For the Week Ending, March 21st 2020`,
-    `${data.name}'s, Total Claims, For the Week Ending, March 28th 2020`,
+    `${data.name}'s, New Claims, For the Week Ending, March 21st 2020`,
+    `${data.name}'s, New Claims, For the Week Ending, March 28th 2020`,
   ];
   const colors = ['#623D6E', '#3394C3', '#78E3CF', '#78E3CF'];
   const labelProps = {
