@@ -18,14 +18,16 @@ const Chart = ({ data }) => {
     data['greatrecessionmax'],
     data['week20200326'],
     data['week20200402'],
+    data['week20200409'],
   ];
   const xLabels = [
     `Great Recession, ${data.name}'s, Average Claims, Per Week`,
     `Great Recession, ${data.name}'s, Highest Claims, In a Week`,
-    `${data.name}'s, New Claims, For the Week Ending, March 21st 2020`,
-    `${data.name}'s, New Claims, For the Week Ending, March 28th 2020`,
+    `${data.name}'s, New Claims, For Week Ended, March 21st 2020`,
+    `${data.name}'s, New Claims, For Week Ended, March 28th 2020`,
+    `${data.name}'s, New Claims, For Week Ended, April 4th 2020`,
   ];
-  const colors = ['#623D6E', '#3394C3', '#78E3CF', '#78E3CF'];
+  const colors = ['#623D6E', '#3394C3', '#78E3CF', '#78E3CF', '#78E3CF'];
   const labelProps = {
     textAnchor: 'middle',
     fontFamily: '"lato", sans-serif',
