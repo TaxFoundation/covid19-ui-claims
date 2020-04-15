@@ -30,6 +30,7 @@ const AreaChart = ({ data }) => {
     '4-Apr',
   ];
   const colors = {
+    gr: '#ededed',
     continued: '#3394C3',
     initial: '#78E3CF',
   };
@@ -70,6 +71,21 @@ const AreaChart = ({ data }) => {
   return (
     <svg viewBox={`0 0 ${width} ${height}`}>
       <Group>
+        <rect
+          x={margin.left}
+          width={xMax}
+          y={yScale(data.grInitialAvg + data.grContinuedAvg)}
+          height={yMax - yScale(data.grInitialAvg + data.grContinuedAvg)}
+          fill={colors.gr}
+        ></rect>
+        <line
+          x1={margin.left}
+          x2={xMax}
+          y1={yScale(data.grInitialAvg + data.grContinuedAvg)}
+          y2={yScale(data.grInitialAvg + data.grContinuedAvg)}
+          stroke={'#cdcdcd'}
+          strokeDasharray={4}
+        ></line>
         {combined.map((entry, i) => {
           const barWidth = xScale.bandwidth();
           const barHeight = yMax - yScale(entry);
@@ -128,11 +144,16 @@ const AreaChart = ({ data }) => {
           top={margin.top + yMax}
           label='Week of Claims'
           labelProps={labelProps}
-          labelOffset={30}
         ></AxisBottom>
+        <Group transform={`translate(${15}, ${height - margin.bottom + 55})`}>
+          <rect height={'15'} width={'15'} fill={colors.initial}></rect>
+          <text fontFamily="'Lato', sans-serif" x='20' y='13'>
+            New Claims
+          </text>
+        </Group>
         <Group
-          transform={`translate(${margin.left + 75}, ${
-            height - margin.bottom + 30
+          transform={`translate(${margin.left + 80}, ${
+            height - margin.bottom + 55
           })`}
         >
           <rect height={'15'} width={'15'} fill={colors.continued}></rect>
@@ -141,13 +162,13 @@ const AreaChart = ({ data }) => {
           </text>
         </Group>
         <Group
-          transform={`translate(${xMax / 2 + 25}, ${
-            height - margin.bottom + 30
+          transform={`translate(${margin.left + 255}, ${
+            height - margin.bottom + 55
           })`}
         >
-          <rect height={'15'} width={'15'} fill={colors.initial}></rect>
+          <rect height={'15'} width={'15'} fill={colors.gr}></rect>
           <text fontFamily="'Lato', sans-serif" x='20' y='13'>
-            Initial Claims
+            Great Recession Avg. Week
           </text>
         </Group>
       </Group>
