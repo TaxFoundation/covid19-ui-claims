@@ -18,8 +18,8 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get('/data/area-data.csv');
-      setData(csvParse(result.data));
+      const result = await axios.get('/data/area-data.json');
+      setData(result);
     };
     fetchData();
   }, []);

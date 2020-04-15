@@ -14,18 +14,16 @@ const buildData = () => {
     return data;
   });
   const theData = csvParse(rawData.toString(), row => {
-    let weeks = [];
     let count = 1;
+    let initial = [];
+    let continued = [];
     const keys = Object.keys(row);
     while (true) {
       if (!keys.includes(`initial${count}`)) {
         break;
       }
-      weeks.push({
-        w: +count,
-        i: +row[`initial${count}`],
-        c: +row[`continued${count}`],
-      });
+      initial.push(+row[`initial${count}`]);
+      continued.push(+row[`continued${count}`]);
       count++;
     }
     return {
@@ -34,7 +32,8 @@ const buildData = () => {
       name: row.name,
       grAvg: +row.greatrecessionavg,
       grMax: +row.greatrecessionmax,
-      weeks,
+      i: initial,
+      c: continued,
     };
   });
   return theData;
