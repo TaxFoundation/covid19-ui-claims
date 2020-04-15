@@ -28,6 +28,10 @@ const AreaChart = ({ data }) => {
     '21-Mar',
     '28-Mar',
   ];
+  const colors = {
+    continued: '#3394C3',
+    initial: '#78E3CF',
+  };
   const combined = data.i.map((claim, i) => {
     return claim + data.c[i];
   });
@@ -77,7 +81,7 @@ const AreaChart = ({ data }) => {
               y={barY}
               width={barWidth}
               height={barHeight}
-              fill={'#ff0000'}
+              fill={colors.initial}
             />
           );
         })}
@@ -93,7 +97,7 @@ const AreaChart = ({ data }) => {
               y={barY}
               width={barWidth}
               height={barHeight}
-              fill={'#0000ff'}
+              fill={colors.continued}
             />
           );
         })}
@@ -123,7 +127,28 @@ const AreaChart = ({ data }) => {
           top={margin.top + yMax}
           label='Week of Claims'
           labelProps={labelProps}
+          labelOffset={30}
         ></AxisBottom>
+        <Group
+          transform={`translate(${margin.left + 75}, ${
+            height - margin.bottom + 30
+          })`}
+        >
+          <rect height={'15'} width={'15'} fill={colors.continued}></rect>
+          <text fontFamily="'Lato', sans-serif" x='20' y='13'>
+            Continued Claims
+          </text>
+        </Group>
+        <Group
+          transform={`translate(${xMax / 2 + 25}, ${
+            height - margin.bottom + 30
+          })`}
+        >
+          <rect height={'15'} width={'15'} fill={colors.initial}></rect>
+          <text fontFamily="'Lato', sans-serif" x='20' y='13'>
+            Initial Claims
+          </text>
+        </Group>
       </Group>
     </svg>
   );
