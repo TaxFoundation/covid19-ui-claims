@@ -30,8 +30,10 @@ const buildData = () => {
       id: +row[keys[0]], //I don't know why row.id doesn't work here, but it doesn't...
       abbr: row.abbr,
       name: row.name,
-      grAvg: +row.greatrecessionavg,
-      grMax: +row.greatrecessionmax,
+      grInitialAvg: +row.grInitialAvg,
+      grInitialMax: +row.grInitialMax,
+      grContinuedAvg: +row.grContinuedAvg,
+      grContinuedMax: +row.grContinuedMax,
       i: initial,
       c: continued,
     };
