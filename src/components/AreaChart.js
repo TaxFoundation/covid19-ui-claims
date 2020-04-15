@@ -27,6 +27,7 @@ const AreaChart = ({ data }) => {
     '14-Mar',
     '21-Mar',
     '28-Mar',
+    '4-Apr',
   ];
   const colors = {
     continued: '#3394C3',
