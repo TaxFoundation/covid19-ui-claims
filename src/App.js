@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { csvParse } from 'd3-dsv';
 
 import Selection from './components/Selection';
 import AreaChart from './components/AreaChart';
@@ -19,7 +18,7 @@ const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       const result = await axios.get('/data/area-data.json');
-      setData(result);
+      setData(result.data);
     };
     fetchData();
   }, []);
