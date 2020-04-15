@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleLinear, scaleBand } from '@vx/scale';
-import { AreaClosed, Line } from '@vx/shape';
-import { curveMonotoneX } from '@vx/curve';
+import { Bar } from '@vx/shape';
 import { format } from 'd3-format';
 
 const AreaChart = ({ data }) => {
@@ -55,7 +54,7 @@ const AreaChart = ({ data }) => {
   const xScale = scaleBand({
     domain: dates,
     rangeRound: [0, xMax],
-    padding: 0.4,
+    padding: 0,
   });
 
   const yScale = scaleLinear({
@@ -65,21 +64,39 @@ const AreaChart = ({ data }) => {
 
   return (
     <svg viewBox={`0 0 ${width} ${height}`}>
-      <Group left={margin.left} top={margin.top}>
-        <AreaClosed
-          data={combined}
-          x={(d, i) => xScale(dates[i])}
-          y={d => yScale(d)}
-          yScale={yScale}
-          fill={'#ff0000'}
-        />
-        <AreaClosed
-          data={data.c}
-          x={(d, i) => xScale(dates[i])}
-          y={d => yScale(d)}
-          yScale={yScale}
-          fill={'#00ff00'}
-        />
+      <Group>
+        {combined.map((entry, i) => {
+          const barWidth = xScale.bandwidth();
+          const barHeight = yMax - yScale(entry);
+          const barX = margin.left + xScale(dates[i]);
+          const barY = margin.top + yMax - barHeight;
+          return (
+            <Bar
+              key={`initial-${i}`}
+              x={barX}
+              y={barY}
+              width={barWidth}
+              height={barHeight}
+              fill={'#ff0000'}
+            />
+          );
+        })}
+        {data.c.map((entry, i) => {
+          const barWidth = xScale.bandwidth();
+          const barHeight = yMax - yScale(entry);
+          const barX = margin.left + xScale(dates[i]);
+          const barY = margin.top + yMax - barHeight;
+          return (
+            <Bar
+              key={`continued-${i}`}
+              x={barX}
+              y={barY}
+              width={barWidth}
+              height={barHeight}
+              fill={'#0000ff'}
+            />
+          );
+        })}
       </Group>
       <Group left={margin.left}>
         <AxisLeft
