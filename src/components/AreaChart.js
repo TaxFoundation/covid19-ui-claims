@@ -129,7 +129,7 @@ const AreaChart = ({ data }) => {
                 width={barWidth}
                 height={barHeight}
                 fill={colors.initial}
-                onMouseMove={e => tooltipMouseover(barX, e.clientY, i)}
+                onMouseMove={e => tooltipMouseover(e.clientX, e.clientY, i)}
                 onMouseLeave={() => tooltipMouseout()}
               />
             );
@@ -147,7 +147,7 @@ const AreaChart = ({ data }) => {
                 width={barWidth}
                 height={barHeight}
                 fill={colors.continued}
-                onMouseMove={e => tooltipMouseover(barX, e.clientY, i)}
+                onMouseMove={e => tooltipMouseover(e.clientX, e.clientY, i)}
                 onMouseLeave={() => tooltipMouseout()}
               />
             );
