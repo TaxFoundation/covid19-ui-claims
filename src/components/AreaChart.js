@@ -145,30 +145,29 @@ const AreaChart = ({ data }) => {
           label='Week of Claims'
           labelProps={labelProps}
         ></AxisBottom>
-        <Group transform={`translate(${15}, ${height - margin.bottom + 55})`}>
+        <Group transform={`translate(${110}, ${height - margin.bottom + 55})`}>
           <rect height={'15'} width={'15'} fill={colors.initial}></rect>
           <text fontFamily="'Lato', sans-serif" x='20' y='13'>
             New Claims
           </text>
         </Group>
-        <Group
-          transform={`translate(${margin.left + 80}, ${
-            height - margin.bottom + 55
-          })`}
-        >
+        <Group transform={`translate(${110}, ${height - margin.bottom + 75})`}>
           <rect height={'15'} width={'15'} fill={colors.continued}></rect>
           <text fontFamily="'Lato', sans-serif" x='20' y='13'>
             Continued Claims
           </text>
         </Group>
         <Group
-          transform={`translate(${margin.left + 255}, ${
+          transform={`translate(${margin.left + 225}, ${
             height - margin.bottom + 55
           })`}
         >
           <rect height={'15'} width={'15'} fill={colors.gr}></rect>
           <text fontFamily="'Lato', sans-serif" x='20' y='13'>
-            Great Recession Avg. Week
+            Great Recession Average
+          </text>
+          <text fontFamily="'Lato', sans-serif" x='20' y='33'>
+            Weekly Total Claims
           </text>
         </Group>
       </Group>
