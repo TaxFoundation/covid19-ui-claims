@@ -19,7 +19,7 @@ const Tooltip = ({ show, children, x, y }) => {
     <StyledTooltip
       show={show}
       style={{
-        top: show ? `${y - 170}px` : 0,
+        top: show ? `${y - 200}px` : 0,
         left: show ? `${x - 50}px` : 0,
       }}
     >

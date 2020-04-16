@@ -212,10 +212,25 @@ const AreaChart = ({ data }) => {
       </svg>
       <Tooltip show={showTooltip} x={tooltipPosition.x} y={tooltipPosition.y}>
         <p>
-          <strong>Week ending {week}</strong>
+          <strong>Week ending</strong>
+          <br />
+          {week}
         </p>
-        <p>New Claims: {format(',')(newClaims)}</p>
-        <p>Continued Claims: {format(',')(contClaims)}</p>
+        <p>
+          <strong>New Claims:</strong>
+          <br />
+          {format(',')(newClaims)}
+        </p>
+        <p>
+          <strong>Continued Claims:</strong>
+          <br />
+          {format(',')(contClaims)}
+        </p>
+        <p>
+          <strong>Total Claims:</strong>
+          <br />
+          {format(',')(newClaims + contClaims)}
+        </p>
       </Tooltip>
     </div>
   );
