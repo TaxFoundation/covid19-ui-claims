@@ -80,7 +80,7 @@ const AreaChart = ({ data }) => {
         ></rect>
         <line
           x1={margin.left}
-          x2={xMax}
+          x2={margin.left + xMax}
           y1={yScale(data.grInitialAvg + data.grContinuedAvg)}
           y2={yScale(data.grInitialAvg + data.grContinuedAvg)}
           stroke={'#cdcdcd'}
