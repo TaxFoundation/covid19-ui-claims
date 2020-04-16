@@ -38,7 +38,10 @@ const AreaChart = ({ data }) => {
     return claim + data.c[i];
   });
 
-  const yMaxValue = Math.max(...combined);
+  const yMaxValue = Math.max(
+    ...combined,
+    data.grInitialAvg + data.grContinuedAvg
+  );
 
   const labelProps = {
     textAnchor: 'middle',
@@ -74,15 +77,15 @@ const AreaChart = ({ data }) => {
         <rect
           x={margin.left}
           width={xMax}
-          y={yScale(data.grInitialAvg + data.grContinuedAvg)}
+          y={margin.top + yScale(data.grInitialAvg + data.grContinuedAvg)}
           height={yMax - yScale(data.grInitialAvg + data.grContinuedAvg)}
           fill={colors.gr}
         ></rect>
         <line
           x1={margin.left}
           x2={margin.left + xMax}
-          y1={yScale(data.grInitialAvg + data.grContinuedAvg)}
-          y2={yScale(data.grInitialAvg + data.grContinuedAvg)}
+          y1={margin.top + yScale(data.grInitialAvg + data.grContinuedAvg)}
+          y2={margin.top + yScale(data.grInitialAvg + data.grContinuedAvg)}
           stroke={'#cdcdcd'}
           strokeDasharray={4}
         ></line>
