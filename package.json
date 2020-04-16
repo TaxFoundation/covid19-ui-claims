@@ -7,6 +7,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "@vx/axis": "^0.0.195",
+    "@vx/curve": "^0.0.195",
     "@vx/grid": "^0.0.195",
     "@vx/group": "^0.0.195",
     "@vx/point": "^0.0.195",
@@ -22,8 +23,9 @@
     "styled-components": "^5.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run build-data && react-scripts start",
+    "build-data": "node ./src/compileData.js",
+    "build": "npm run build-data && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

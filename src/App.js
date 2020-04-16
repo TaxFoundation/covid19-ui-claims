@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import axios from 'axios';
-import { csvParse } from 'd3-dsv';
 
 import Selection from './components/Selection';
-import Chart from './components/Chart';
+import AreaChart from './components/AreaChart';
+// // import BarChart from './components/BarChart';
 
 const StyledApp = styled.div`
   margin: 0 auto;
@@ -17,8 +17,8 @@ const App = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const result = await axios.get('/data/data.csv');
-      setData(csvParse(result.data));
+      const result = await axios.get('/data/area-data.json');
+      setData(result.data);
     };
     fetchData();
   }, []);
@@ -38,7 +38,7 @@ const App = () => {
             selected={selectedState}
             setSelected={setSelectedState}
           ></Selection>
-          <Chart data={data.find(d => +d.id === selectedState)}></Chart>
+          <AreaChart data={data.find(d => +d.id === selectedState)}></AreaChart>
         </>
       ) : null}
     </StyledApp>

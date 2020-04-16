@@ -1592,7 +1592,7 @@
     classnames "^2.2.5"
     prop-types "^15.6.0"
 
-"@vx/curve@0.0.195":
+"@vx/curve@0.0.195", "@vx/curve@^0.0.195":
   version "0.0.195"
   resolved "https://registry.yarnpkg.com/@vx/curve/-/curve-0.0.195.tgz#86cf9ff09f7b22a9d22130f6a4ef9a4969417fec"
   integrity sha512-fQXvd1530ou/K5v6fzH/RWy8HjXCKKScmtk9DfSdp/wkhm5u+1jkoe6r53PLAdJhUnMI6U8OsiVlaLF8nADuMw==
