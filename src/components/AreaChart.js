@@ -28,6 +28,7 @@ const AreaChart = ({ data }) => {
     '21-Mar',
     '28-Mar',
     '4-Apr',
+    '11-Apr',
   ];
   const colors = {
     gr: '#ededed',
@@ -63,7 +64,7 @@ const AreaChart = ({ data }) => {
   const xScale = scaleBand({
     domain: dates,
     rangeRound: [0, xMax],
-    padding: 0,
+    padding: -0.1,
   });
 
   const yScale = scaleLinear({
