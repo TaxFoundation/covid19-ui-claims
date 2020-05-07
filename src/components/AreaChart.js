@@ -92,7 +92,7 @@ const AreaChart = ({ data }) => {
 
   const xScale = scaleBand({
     domain: dates,
-    rangeRound: [0, xMax],
+    rangeRound: [-5, xMax + 5],
     padding: 0,
   });
 
@@ -223,6 +223,13 @@ const AreaChart = ({ data }) => {
               );
             }}
           </AxisBottom>
+          <line
+            x1={0}
+            x2={xMax}
+            y1={margin.top + yScale(0)}
+            y2={margin.top + yScale(0)}
+            stroke={'#000'}
+          ></line>
           <Group transform={`translate(0, 20)`}>
             <Group
               transform={`translate(${110}, ${height - margin.bottom + 55})`}
