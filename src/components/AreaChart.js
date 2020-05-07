@@ -3,15 +3,15 @@ import PropTypes from 'prop-types';
 import { Group } from '@vx/group';
 import { AxisLeft, AxisBottom } from '@vx/axis';
 import { scaleLinear, scaleBand } from '@vx/scale';
-import { Bar } from '@vx/shape';
+import { Bar, Line } from '@vx/shape';
 import { format } from 'd3-format';
 
 import Tooltip from './Tooltip';
 
 const AreaChart = ({ data }) => {
-  const height = 506;
+  const height = 536;
   const width = 674;
-  const margin = { top: 20, right: 20, bottom: 100, left: 80 };
+  const margin = { top: 20, right: 20, bottom: 120, left: 80 };
   const xMax = width - margin.left - margin.right;
   const yMax = height - margin.top - margin.bottom;
 
@@ -39,6 +39,7 @@ const AreaChart = ({ data }) => {
     '11-Apr',
     '18-Apr',
     '25-Apr',
+    '2-May',
   ];
 
   const tooltipMouseover = (x, y, week) => {
@@ -74,9 +75,10 @@ const AreaChart = ({ data }) => {
   const labelProps = {
     textAnchor: 'middle',
     fontFamily: '"lato", sans-serif',
-    fontSize: 18,
     fill: 'black',
   };
+
+  const labelSize = 16;
 
   const numTicksForY = maxValue => {
     if (maxValue >= 1000000) {
@@ -179,36 +181,78 @@ const AreaChart = ({ data }) => {
             scale={xScale}
             top={margin.top + yMax}
             label='Week of Claims'
-            labelProps={labelProps}
-          ></AxisBottom>
-          <Group
-            transform={`translate(${110}, ${height - margin.bottom + 55})`}
           >
-            <rect height={'15'} width={'15'} fill={colors.initial}></rect>
-            <text fontFamily="'Lato', sans-serif" x='20' y='13'>
-              New Claims
-            </text>
-          </Group>
-          <Group
-            transform={`translate(${110}, ${height - margin.bottom + 75})`}
-          >
-            <rect height={'15'} width={'15'} fill={colors.continued}></rect>
-            <text fontFamily="'Lato', sans-serif" x='20' y='13'>
-              Continued Claims
-            </text>
-          </Group>
-          <Group
-            transform={`translate(${margin.left + 225}, ${
-              height - margin.bottom + 55
-            })`}
-          >
-            <rect height={'15'} width={'15'} fill={colors.gr}></rect>
-            <text fontFamily="'Lato', sans-serif" x='20' y='13'>
-              Great Recession Average
-            </text>
-            <text fontFamily="'Lato', sans-serif" x='20' y='33'>
-              Weekly Total Claims
-            </text>
+            {axis => {
+              const tickLabelSize = 10;
+              const tickRotate = -45;
+              const axisCenter =
+                (axis.axisToPoint.x - axis.axisFromPoint.x) / 2;
+              return (
+                <g className='my-custom-bottom-axis'>
+                  {axis.ticks.map((tick, i) => {
+                    const tickX = tick.to.x;
+                    const tickY = tick.to.y + tickLabelSize + axis.tickLength;
+                    return (
+                      <Group
+                        key={`vx-tick-${tick.value}-${i}`}
+                        className={'vx-axis-tick'}
+                      >
+                        <Line
+                          from={tick.from}
+                          to={tick.to}
+                          stroke={labelProps.fill}
+                        />
+                        <text
+                          transform={`translate(${tickX}, ${tickY}) rotate(${tickRotate})`}
+                          {...labelProps}
+                          fontSize={tickLabelSize}
+                        >
+                          {tick.formattedValue}
+                        </text>
+                      </Group>
+                    );
+                  })}
+                  <text
+                    transform={`translate(${axisCenter}, 60)`}
+                    {...labelProps}
+                    fontSize={labelSize}
+                  >
+                    {axis.label}
+                  </text>
+                </g>
+              );
+            }}
+          </AxisBottom>
+          <Group transform={`translate(0, 20)`}>
+            <Group
+              transform={`translate(${110}, ${height - margin.bottom + 55})`}
+            >
+              <rect height={'15'} width={'15'} fill={colors.initial}></rect>
+              <text fontFamily="'Lato', sans-serif" x='20' y='13'>
+                New Claims
+              </text>
+            </Group>
+            <Group
+              transform={`translate(${110}, ${height - margin.bottom + 75})`}
+            >
+              <rect height={'15'} width={'15'} fill={colors.continued}></rect>
+              <text fontFamily="'Lato', sans-serif" x='20' y='13'>
+                Continued Claims
+              </text>
+            </Group>
+            <Group
+              transform={`translate(${margin.left + 225}, ${
+                height - margin.bottom + 55
+              })`}
+            >
+              <rect height={'15'} width={'15'} fill={colors.gr}></rect>
+              <text fontFamily="'Lato', sans-serif" x='20' y='13'>
+                Great Recession Average
+              </text>
+              <text fontFamily="'Lato', sans-serif" x='20' y='33'>
+                Weekly Total Claims
+              </text>
+            </Group>
           </Group>
         </Group>
       </svg>
