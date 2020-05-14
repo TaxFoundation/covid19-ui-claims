@@ -40,6 +40,7 @@ const AreaChart = ({ data }) => {
     '18-Apr',
     '25-Apr',
     '2-May',
+    '9-May',
   ];
 
   const tooltipMouseover = (x, y, week) => {
@@ -92,8 +93,8 @@ const AreaChart = ({ data }) => {
 
   const xScale = scaleBand({
     domain: dates,
-    rangeRound: [-5, xMax + 5],
-    padding: 0,
+    range: [0, xMax],
+    padding: -0.03,
   });
 
   const yScale = scaleLinear({
