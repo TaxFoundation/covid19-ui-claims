@@ -45,7 +45,8 @@ const AreaChart = ({ data }) => {
     '23-May',
     '30-May',
     '6-Jun',
-    '13-Jun'
+    '13-Jun',
+    '20-Jun',
   ];
 
   const tooltipMouseover = (x, y, week) => {
